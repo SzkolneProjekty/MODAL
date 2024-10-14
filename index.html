@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zagadka: Stir the Pot</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+        }
+        h1 {
+            color: #d9534f;
+        }
+        p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #5bc0de;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #31b0d5;
+        }
+        .container {
+            text-align: center;
+        }
+        .image-container {
+            margin: 20px 0;
+        }
+        img {
+            max-width: 300px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Ukryj modal domyslnie */
+            position: fixed; /* Pozostaw modal na ekranie */
+            z-index: 1000; /* Ustaw wyzszy poziom z-index */
+            left: 0;
+            top: 0;
+            width: 100%; /* Szerokosc 100% */
+            height: 100%; /* Wysokosc 100% */
+            overflow: auto; /* Wlacza przewijanie, jesli jest potrzebne */
+            background-color: rgba(0, 0, 0, 0.5); /* Pólprzezroczyste tlo */
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto; /* Ustaw marginesy */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%; /* Szerokosc modalu (50% ekranu) */
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .close {
+            color: #aaa;
+            float: right; /* Ustaw przycisk zamkniecia na prawo */
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black; /* Zmiana koloru przycisku zamkniecia po najechaniu */
+            text-decoration: none;
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Stir the Pot</h1>
+        <div class="image-container">
+            <img src="obraz.png" alt="Stir the Pot">
+        </div>
+
+        <p>There are four steps for you to take to handle this challenge</p>
+        <p>First, listen to the audio</p>
+        
+        <button onclick="showLink()">Show link</button>
+        
+        <p>Secondly, think about the phrase 'stir the pot'. What does it mean? Click on the button below and send the answer</p>
+        <button onclick="showLink1()">Click to answer here</button>
+		<div id="link1" style="display: none;">
+            <a href="https://forms.office.com/Pages/ResponseDetailPage.aspx?id=SY-QaqMUF0i7jjq5SO6InEP0GL1fbSFAqZq07ZRWKV5UOVlWM1hPQzRHMUhZS09PVzE5NlBPS0NXMS4u&rid=1&GetResponseToken=Q2NLok7VR6DnyWJRtmtYD-yJrN6Te_vqOve_58n5h8c&origin=rc">Answer here</a>
+        </div>
+        
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <iframe id="modalIframe" src="" ></iframe>
+        </div>
+    </div>
+
+    <script>
+        function showLink() {
+            document.getElementById('modalIframe').src = "https://downloads.bbc.co.uk/learningenglish/features/tews/240603_tews_stir_the_pot_download.mp3";
+            document.getElementById('myModal').style.display = 'block'; // Pokaz modal
+        }
+
+        function showLink1() {
+            document.getElementById('link1').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = 'none'; // Ukryj modal
+            document.getElementById('modalIframe').src = ""; // Wyczysc src, aby zatrzymac odtwarzanie lub resetowac formularz
+        }
+
+        // Opcjonalnie: Zamkniecie modalu po kliknieciu poza jego zawartosc
+        window.onclick = function(event) {
+            var modal = document.getElementById('myModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
